@@ -1,0 +1,31 @@
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/test?useUnicode=true&amp;characterEncoding=utf8
+    username:
+    password:
+  jpa:
+    # jpa가 생성한 sql문을 보여준다.
+    show-sql: true
+    # create : SessionFactory 시작시 스키마를 삭제하고 다시 생성
+    # create-drop : SessionFactory 종료 시 스키마를 삭제
+    # update : SessionFactory 연결된 DB와 비교하여 추가된 항목은 추가 만약 같은 변수명이면 오류 발생
+    # validate : SessionFactory 시작시 객체구성과 스키마가 다르다면 예외 발생
+    # none : 아무것도 안함
+    # 실제 서비스 배포시에는 create, create-drop, update와 같은 옵션을 사용하면 안되지만
+    # 개발 초기 테스트시에는 유용하게 사용할 수 있습니다.
+    # https://haservi.github.io/posts/spring/hibernate-ddl-auto/
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+    # https://gracelove91.tistory.com/100
+    # https://ykh6242.tistory.com/entry/JPA-OSIVOpen-Session-In-View%EC%99%80-%EC%84%B1%EB%8A%A5-%EC%B5%9C%EC%A0%81%ED%99%94
+    open-in-view: false
+    # Entity 설정을 참고하여 Spring Application 실행시점에 Hibernate에서 자동으로 DDL을 생성하여,
+    # 필요한 Database의 Table설정들을 자동으로 수행하주는 기능입니다.
+    # 위 ddl-auto 속성을 사용할지 말지를 결정하는 옵션이다. default 값은 false
+    # jpa에 의한 자동 초기화 기능을 사용하려면 true로 바꾸고 사용한다.
+    # https://kyu9341.github.io/java/2020/04/14/java_springBootDBinit/
+    generate-ddl: true
