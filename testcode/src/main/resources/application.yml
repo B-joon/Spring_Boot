@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://193.122.127.164:3306/test?useUnicode=true&amp;characterEncoding=utf8
+    username: testid
+    password: bongjoon
+    driver-class-name: org.mariadb.jdbc.Driver
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
