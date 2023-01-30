@@ -6,6 +6,12 @@ spring:
     driver-class-name: org.mariadb.jdbc.Driver
 
   jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: update
+     show-sql: true
+     hibernate:
+       ddl-auto: validate
+     database-platform: org.hibernate.dialect.MySQL5Dialect
+     properties:
+       hibernate:
+         format_sql: true
+     open-in-view: false
+     generate-ddl: true

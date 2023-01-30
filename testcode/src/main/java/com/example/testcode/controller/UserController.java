@@ -5,14 +5,14 @@ import com.example.testcode.repository.UserRepository;
 import com.example.testcode.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 public class UserController {
 
@@ -25,7 +25,7 @@ public class UserController {
     private EntityManager entityManager;
 
     @GetMapping("/all")
-    public List<UserEntity> searchAll() {
+    public List<UserEntity> searchAll() throws Exception {
         return userService.searchAll();
     }
 
