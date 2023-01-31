@@ -15,10 +15,10 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true, name = "MEMBER_IDX")
-    private long member_idx;
+    private int member_idx;
 
-    @Column(nullable = false, name = "MEMBER_ID")
-    private String member_id;
+    @Column(nullable = false, name = "MEMBER_EMAIL")
+    private String member_email;
 
     @Column(nullable = false, name = "MEMBER_PASSWORD")
     private String member_password;
@@ -37,4 +37,10 @@ public class UserEntity {
 
     @Column(nullable = true, name = "MEMBER_SNS_TOKEN")
     private String member_sns_token;
+
+    @Column(nullable = false, name = "MEMBER_GENDER")
+    private String member_gender;
+
+    @Column(nullable = false, name = "MEMBER_ROLE")
+    private String member_role;
 }

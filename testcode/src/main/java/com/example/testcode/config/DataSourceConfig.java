@@ -1,5 +1,8 @@
 package com.example.testcode.config;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.context.annotation.PropertySource;
@@ -34,8 +37,14 @@ public class DataSourceConfig {
     @Value("${spring.datasource.password}")
     private String password;
 
+//    @Bean
+//    @ConfigurationProperties(prefix = "spring.datasource.hikari")
+//    public HikariConfig hikariConfig() {
+//        return new HikariConfig();
+//    }
+
     @Bean
-    public DataSource dataSource(){
+    public DataSource dataSource() throws Exception{
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(driverClassName);
         dataSource.setUrl(url);
@@ -45,7 +54,7 @@ public class DataSourceConfig {
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws Exception {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
         em.setPackagesToScan(new String[] {"com.example.testcode.entity"});
@@ -56,7 +65,7 @@ public class DataSourceConfig {
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager() {
+    public PlatformTransactionManager transactionManager() throws Exception{
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
         return transactionManager;
