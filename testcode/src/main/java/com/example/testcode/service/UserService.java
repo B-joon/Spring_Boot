@@ -2,16 +2,13 @@ package com.example.testcode.service;
 
 
 import com.example.testcode.entity.UserEntity;
-
-import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface UserService {
 
-    public List<UserEntity> searchAll() throws Exception;
-//    public List<UserEntity> searchParam(int member_age);
-//    public List<UserEntity> searchParamRepo(Long member_idx);
-//    public String insertUser(UserEntity user);
-//    public String updateUser(UserEntity user);
-    public String deleteUser(String member_idx);
+    public UserEntity findById(String email);
+
+    @Transactional
+    public Long join(UserEntity user);
 
 }

@@ -2,6 +2,7 @@ package com.example.testcode.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,10 +15,10 @@ public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, unique = true, name = "MEMBER_IDX")
-    private int member_idx;
+    @Column(nullable = false,name = "MEMBER_IDX")
+    private Long member_idx;
 
-    @Column(nullable = false, name = "MEMBER_EMAIL")
+    @Column(nullable = false, name = "MEMBER_EMAIL", unique = true)
     private String member_email;
 
     @Column(nullable = false, name = "MEMBER_PASSWORD")
@@ -29,7 +30,9 @@ public class UserEntity {
     @Column(nullable = true, name = "MEMBER_ADDRESS")
     private String member_address;
 
-    @Column(nullable = false, name = "REG_DATE")
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false, name = "REG_DATE", insertable = false, updatable = false)
+    @CreationTimestamp
     private Date reg_date;
 
     @Column(nullable = false, name = "MEMBER_AGE")

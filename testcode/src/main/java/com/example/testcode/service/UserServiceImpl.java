@@ -2,55 +2,32 @@ package com.example.testcode.service;
 
 import com.example.testcode.entity.UserEntity;
 import com.example.testcode.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
-@Service("userService")
+@Service
 public class UserServiceImpl implements UserService{
 
     @Autowired
     private UserRepository userRepository;
 
     @Override
-    public List<UserEntity> searchAll() {
-        return userRepository.findAll();
+    public UserEntity findById(String email) {
+        return userRepository.findById(email);
     }
-//
-//    @Override
-//    public List<UserEntity> searchParam(int member_age) {
-//        return entityManager.createQuery("select m from TEST_MEMBER m where m.member_age > :member_age", UserEntity.class)
-//                .setParameter("member_age", member_age)
-//                .getResultList();
-//    }
-//
-//    @Override
-//    public List<UserEntity> searchParamRepo(Long member_idx) {
-//        return userRepository.searchParamRepo(member_idx);
-//    }
-//
-//    @Override
-//    public String insertUser(UserEntity user) {
-//        if (userRepository.findById(user.getMember_id()).isPresent()) {
-//            return "동일한 계정이 있습니다.";
-//        } else {
-//            userRepository.save(user);
-//            return "가입이 완료 되었습니다.";
-//        }
-//    }
-//
-//    @Override
-//    public String updateUser(UserEntity user) {
-//        if (!userRepository.findById(user.getMember_id()).isPresent()) {
-//            return "계정이 존재하지 않습니다.";
-//        } else {
-//            userRepository.save(user);
-//            return "비밀번호가 변경 되었습니다.";
-//        }
-//    }
 
+    @Transactional
     @Override
-    public String deleteUser(String member_idx) {
-        return null;
+    public Long join(UserEntity user) {
+        user.setMember_role("USER");
+
+//        System.out.println(resultUser);
+//        int result = 0;
+//        if (resultUser.getMember_email().isEmpty()) {
+//            result = 1;
+//        }
+        return userRepository.save(user).getMember_idx();
     }
 }
