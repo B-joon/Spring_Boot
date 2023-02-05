@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://193.122.127.164:3306/test?useUnicode=true&amp;characterEncoding=utf8
+    username: testid
+    password: bongjoon
+    driver-class-name: org.mariadb.jdbc.Driver
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+    generate-ddl: true
+  devtools:
+    restart:
+      enabled: true
+
+logging:
+  level:
+    org.hibernate.type.descriptor.sql: DEBUG
+    sql: debug
+server:
+  port: 8080
