@@ -23,6 +23,7 @@ public class BoardResponseVO {
         this.registerTime = entity.getRegisterTime();
     }
 
+    @Override
     public String toString() {
         return "BoardListVO [id=" + id + ", title=" + title + ", content=" + content
                 + ", readCnt=" + readCnt + ", registerId=" + registerId + ", registerTime=" + registerTime + "]";
